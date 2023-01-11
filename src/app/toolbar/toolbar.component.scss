@@ -1,0 +1,21 @@
+.toolbar-wrapper {
+    a {
+        text-decoration: none;
+        color: white;
+
+        &:hover {
+            color: lightblue;
+        }
+    }
+
+    .home {
+        padding-top: 30px;
+    }
+
+    .messages {
+        padding-bottom: 30px;
+    }
+
+
+
+}

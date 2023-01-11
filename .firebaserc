@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "messages-firebase-app": {
+      "hosting": {
+        "messages-firebase-app": [
+          "messages-firebase-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "messages-firebase-app"
+  }
+}

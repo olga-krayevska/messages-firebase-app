@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
+import { v4 as uuidv4 } from 'uuid'
+import { DataBaseService } from './core/data-base-service/data-base.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private databaseService: DataBaseService){}
+
   title = 'messages-firebase-app';
+
+  // message = {
+  //   name: "Greatings in Englis",
+  //   message: "Hey",
+  //   date: moment().format('D MMM YYYY')
+  // }  
+
+// addMessage() {
+//   console.log("addMessage")
+//   const id =  uuidv4();
+//   this.databaseService.createMessage(this.message, id) 
+// }
+
+// getMessage() {
+//   this.databaseService.getAllMessages()?.subscribe(data => console.log("DATA ", data))
+// }
 }
