@@ -7,6 +7,7 @@ import { messageActions } from './messages.actions';
 export interface MessageState {
     messages: Message[];
     sortData: SortData;
+    isLoading: boolean
   }
 
 export const initialState: MessageState = {
@@ -14,11 +15,18 @@ export const initialState: MessageState = {
     sortData: { 
         field: 'time',
         direction: DirectionEnum.Descending
-    }
+    },
+    isLoading: false
 };
   
 export const messagesStateKey = 'messages';
   export const messageReducer = createReducer(
     initialState,
-    on(messageActions.getMessagesSuccess, (state, { messages }) => ({...state, messages})),    
+    on(messageActions.getMessages, (state => ({...state, isLoading: true}))),
+    on(messageActions.getMessagesSuccess, (state, { messages }) => ({...state, messages, isLoading: false})), 
+    on(messageActions.getMessagesFailure, (state => ({...state, isLoading: false}))), 
+    
+    on(messageActions.addMessage, (state => ({...state, isLoading: true}))),  
+    on(messageActions.addMessageSuccess, (state => ({...state, isLoading: false}))), 
+    on(messageActions.addMessageFailure, (state => ({...state, isLoading: false}))),    
   )

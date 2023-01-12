@@ -11,7 +11,6 @@ export class DataBaseService {
   constructor(private firestore: AngularFirestore) { }
 
   createMessage(message: Message): Observable<void>{
-    console.log("SERVICE message ", message, " messageId ", message.id)
     return from(this.firestore.collection<Message>('messages').doc(message.id).set(message));
   }
 

@@ -12,5 +12,7 @@ export namespace messageSelectors {
         selectAllMessages,
         selectSortData,
         (messages, sortData) => sortArrayByProperty(messages, sortData.field, sortData.direction))
+
+    export const selectLoading = createSelector(messageSelector, (state) => state.isLoading);    
 }
 

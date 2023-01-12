@@ -40,7 +40,12 @@ export class MessageEffect {
             map((messages) => {
                 return messageActions.getMessagesSuccess({ messages })
             }),
-            catchError(() => of(messageActions.getMessagesFailure()))            
+            catchError(() => {
+                this.snackBar.open("Messages has not been loaded", "#fail", {
+                    duration: 2000
+                  });
+                return of(messageActions.getMessagesFailure())
+            })           
         ))                   
     ))
 

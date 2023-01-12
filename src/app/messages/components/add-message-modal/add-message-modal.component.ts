@@ -6,6 +6,7 @@ import { messageActions } from 'src/app/core/store/messages.actions';
 import { MessageState } from 'src/app/core/store/messages.reducer';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-message-modal',
@@ -19,8 +20,10 @@ export class AddMessageModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     messageForm = new FormGroup({
-      name: new FormControl(''),
-      message: new FormControl(''),
+      name: new FormControl('', [
+        Validators.required]),
+      message: new FormControl('', [
+        Validators.required]),
     });
 
   submit() {
@@ -34,7 +37,6 @@ export class AddMessageModalComponent {
   }  
 
   closeModal() {
-    console.log("close")
     this.dialogRef.close(false);
   }
 }

@@ -17,10 +17,8 @@ import { AddMessageModalComponent } from '../add-message-modal/add-message-modal
 
 export class MessagesComponent implements OnInit, OnDestroy{
   subscription: Subscription = new Subscription();
-  messages$: Observable<Message[]> = this.store.select(messageSelectors.selectSortedMessages).pipe(tap(() => {
-    this.isLoading$.next(false);
-  }))
-  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true); 
+  messages$: Observable<Message[]> = this.store.select(messageSelectors.selectSortedMessages);
+  isLoading$: Observable<boolean> = this.store.select(messageSelectors.selectLoading);
   displayedColumns: string[] = ['id', 'name', 'message', 'date'];
 
   constructor (
@@ -39,12 +37,7 @@ export class MessagesComponent implements OnInit, OnDestroy{
   addMessage() {
     this.dialog.open(AddMessageModalComponent, { data: { isLoading$: this.isLoading$ }}).afterClosed().pipe(filter(result => !!result)).subscribe((message) => {
       this.store.dispatch(messageActions.addMessage({ message: message }))
-      this.isLoading$.next(true);
     })    
-  }
-
-  getMessages() {
-    this.databaseService.getAllMessages()?.subscribe((d) => console.log("DATA ", d))
   }
 
   checkLength(message: string) {

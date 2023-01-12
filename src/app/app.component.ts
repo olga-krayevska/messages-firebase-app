@@ -13,20 +13,5 @@ export class AppComponent {
   constructor(private databaseService: DataBaseService){}
 
   title = 'messages-firebase-app';
-
-  // message = {
-  //   name: "Greatings in Englis",
-  //   message: "Hey",
-  //   date: moment().format('D MMM YYYY')
-  // }  
-
-// addMessage() {
-//   console.log("addMessage")
-//   const id =  uuidv4();
-//   this.databaseService.createMessage(this.message, id) 
-// }
-
-// getMessage() {
-//   this.databaseService.getAllMessages()?.subscribe(data => console.log("DATA ", data))
-// }
+ 
 }
