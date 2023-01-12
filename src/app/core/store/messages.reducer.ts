@@ -28,5 +28,9 @@ export const messagesStateKey = 'messages';
     
     on(messageActions.addMessage, (state => ({...state, isLoading: true}))),  
     on(messageActions.addMessageSuccess, (state => ({...state, isLoading: false}))), 
-    on(messageActions.addMessageFailure, (state => ({...state, isLoading: false}))),    
+    on(messageActions.addMessageFailure, (state => ({...state, isLoading: false}))), 
+    
+    on(messageActions.deleteMessage, (state => ({...state, isLoading: true}))),  
+    on(messageActions.deleteMessageSuccess, (state => ({...state, isLoading: false}))), 
+    on(messageActions.deleteMessageFailure, (state => ({...state, isLoading: false}))),
   )

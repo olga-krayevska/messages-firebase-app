@@ -49,6 +49,24 @@ export class MessageEffect {
         ))                   
     ))
 
+    deleteMessage$ = createEffect(() => this.actions$.pipe( 
+        ofType(messageActions.deleteMessage),
+        switchMap(({ id }) => this.dbService.deleteMessage(id).pipe(
+            map(() => {
+                this.snackBar.open(`Message ${id} has beed deleted`, "Success", {
+                    duration: 2000
+                  });
+                return messageActions.deleteMessageSuccess()
+            }),
+            catchError(() => {
+                this.snackBar.open("Message hes not been deleted", "#fail", {
+                    duration: 2000
+                  });
+                return of(messageActions.deleteMessageFailure())
+            }           
+        ))                   
+    )))
+
     
     
     

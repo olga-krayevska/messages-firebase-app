@@ -14,6 +14,10 @@ export class DataBaseService {
     return from(this.firestore.collection<Message>('messages').doc(message.id).set(message));
   }
 
+  deleteMessage(messageId: string): Observable<void>{
+    return from(this.firestore.collection<Message>('messages').doc(messageId).delete());    
+  }
+
   getAllMessages(): Observable<Message[]> {
     return this.firestore.collection<Message>('messages').valueChanges();
   }

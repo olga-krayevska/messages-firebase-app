@@ -19,7 +19,7 @@ export class MessagesComponent implements OnInit, OnDestroy{
   subscription: Subscription = new Subscription();
   messages$: Observable<Message[]> = this.store.select(messageSelectors.selectSortedMessages);
   isLoading$: Observable<boolean> = this.store.select(messageSelectors.selectLoading);
-  displayedColumns: string[] = ['id', 'name', 'message', 'date'];
+  displayedColumns: string[] = ['id', 'name', 'message', 'date', 'actions'];
 
   constructor (
     private databaseService: DataBaseService,
@@ -42,6 +42,10 @@ export class MessagesComponent implements OnInit, OnDestroy{
 
   checkLength(message: string) {
     return message.length < 101 ? message : message.substring(0, 100)
+  }
+
+  delete(id: string) {
+    this.store.dispatch(messageActions.deleteMessage({ id: id }))
   }
 }
 

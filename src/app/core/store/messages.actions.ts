@@ -10,4 +10,8 @@ export namespace messageActions {
     export const getMessages = createAction(`Get Messages`);
     export const getMessagesSuccess = createAction(`Get Messages success`, props<{ messages: Message[]}>());
     export const getMessagesFailure = createAction(`Get Messages falure`);
+
+    export const deleteMessage = createAction(`Delete Message`, props<{ id: string }>());
+    export const deleteMessageSuccess = createAction(`Delete Message success`);
+    export const deleteMessageFailure = createAction(`Delete Message falure`);
 }
