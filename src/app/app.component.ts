@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
-import { v4 as uuidv4 } from 'uuid'
 import { DataBaseService } from './core/data-base-service/data-base.service';
 
 @Component({
@@ -10,7 +8,7 @@ import { DataBaseService } from './core/data-base-service/data-base.service';
 })
 export class AppComponent {
 
-  constructor(private databaseService: DataBaseService){}
+  constructor(){}
 
   title = 'messages-firebase-app';
  

@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, filter, Observable, Subscription, tap } from 'rxjs';
+import { filter, Observable, Subscription } from 'rxjs';
 import { Message } from 'src/app/core/interfaces/message';
-import { DataBaseService } from 'src/app/core/data-base-service/data-base.service';
 import { MessageState } from 'src/app/core/store/messages.reducer';
 import { messageActions } from 'src/app/core/store/messages.actions';
 import { messageSelectors } from 'src/app/core/store/messages.selectors';
@@ -22,7 +21,6 @@ export class MessagesComponent implements OnInit, OnDestroy{
   displayedColumns: string[] = ['id', 'name', 'message', 'date', 'actions'];
 
   constructor (
-    private databaseService: DataBaseService,
     private store: Store<MessageState>,
     private dialog: MatDialog) {}
 

@@ -1,10 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { v4 as uuidv4 } from 'uuid'
-import { messageActions } from 'src/app/core/store/messages.actions';
-import { MessageState } from 'src/app/core/store/messages.reducer';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -14,10 +11,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./add-message-modal.component.scss']
 })
 export class AddMessageModalComponent {
-  constructor(
-    private store: Store<MessageState>,
-    public dialogRef: MatDialogRef<AddMessageModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(public dialogRef: MatDialogRef<AddMessageModalComponent>) {}
 
     messageForm = new FormGroup({
       name: new FormControl('', [
