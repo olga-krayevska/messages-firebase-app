@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, Observable, Subscription } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { Message } from 'src/app/core/interfaces/message';
 import { MessageState } from 'src/app/core/store/messages.reducer';
 import { messageActions } from 'src/app/core/store/messages.actions';
@@ -14,8 +14,7 @@ import { AddMessageModalComponent } from '../add-message-modal/add-message-modal
   styleUrls: ['./messages.component.scss']
 })
 
-export class MessagesComponent implements OnInit, OnDestroy{
-  subscription: Subscription = new Subscription();
+export class MessagesComponent implements OnInit {
   messages$: Observable<Message[]> = this.store.select(messageSelectors.selectSortedMessages);
   isLoading$: Observable<boolean> = this.store.select(messageSelectors.selectLoading);
   displayedColumns: string[] = ['id', 'name', 'message', 'date', 'actions'];
@@ -28,12 +27,8 @@ export class MessagesComponent implements OnInit, OnDestroy{
     this.store.dispatch(messageActions.getMessages());    
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   addMessage() {
-    this.dialog.open(AddMessageModalComponent, { data: { isLoading$: this.isLoading$ }}).afterClosed().pipe(filter(result => !!result)).subscribe((message) => {
+    this.dialog.open(AddMessageModalComponent).afterClosed().pipe(filter(result => !!result)).subscribe((message) => {
       this.store.dispatch(messageActions.addMessage({ message: message }))
     })    
   }

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { catchError, map, switchMap, tap, of } from 'rxjs';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { catchError, map, switchMap, of } from 'rxjs';
 import { DataBaseService } from '../data-base-service/data-base.service';
-import { Message } from '../interfaces/message';
 import { messageActions } from './messages.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
